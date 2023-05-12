@@ -6,19 +6,23 @@ const restaurantStack = {
 };
 
 const favoritesStack = {
-    tab: "FavoritesTab"
+    tab: "FavoritesTab",
+    favorites: "Favorites"
 };
 
 const rankingStack = {
-    tab: "RankingTab"
+    tab: "RankingTab",
+    ranking: "Ranking"
 };
 
 const searchStack = {
-    tab: "SearchTab"
+    tab: "SearchTab",
+    search: "Search"
 };
 
 const accountStack = {
-    tab: "AccountTab"
+    tab: "AccountTab",
+    account: "Account"
 };
 
 
