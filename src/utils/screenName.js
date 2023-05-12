@@ -22,7 +22,9 @@ const searchStack = {
 
 const accountStack = {
     tab: "AccountTab",
-    account: "Account"
+    account: "Account",
+    login:  "Login",
+    register: "Register"
 };
 
 
