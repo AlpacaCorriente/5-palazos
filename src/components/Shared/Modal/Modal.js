@@ -1,10 +1,17 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { Overlay } from 'react-native-elements';
+import {styles} from './Modal.styles';
 
-export default function Modal() {
+export  function Modal( props )  {
+
+  const {show, close, children} = props
   return (
-    <View>
-      <Text>Modal</Text>
-    </View>
+
+    <Overlay 
+      isVisible = {show} 
+      overlayStyle = {styles.overlay} 
+      onBackdropPress={close} >
+        {children}
+    </Overlay>
   )
 }

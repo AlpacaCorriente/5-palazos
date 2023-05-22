@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { View } from 'react-native'
 import { Button } from 'react-native-elements'
 import { getAuth, signOut } from 'firebase/auth'
-import {LoadingModal} from "../../../components/Shared/Modal"
+import {LoadingModal} from "../../../components/Shared/LoadingModal"
 import {InfoUser, AccountOptions}  from "../../../components/Account"
 import {styles} from "./UserLoggedScreen.styles"
 
@@ -26,7 +26,9 @@ export function UserLoggedScreen() {
         buttonStyle = {styles.btnStyles}
         titleStyle = { styles.btnTextStyle}
         onPress={logout}/>
+
       <LoadingModal show={loading} text={loadingText} />
+
     </View>
 
     

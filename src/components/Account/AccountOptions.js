@@ -1,12 +1,33 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import { Icon, ListItem } from 'react-native-elements';
+import React, {useState}from 'react'
+import { View } from 'react-native'
+import { Icon, ListItem, Text } from 'react-native-elements';
 import {map} from "lodash";
+import {Modal} from "../../components/Shared"
 
 export  function AccountOptions() {
-  const menuOptions = getMenuOptions();
 
+  const [showModal, setShowModal] = useState(false)
+  const [renderComponent, setRenderComponent] = useState(null)
+  const onCloseOpenModal = () => setShowModal ((prevState) => !prevState);
 
+  const selectedComponent = (key) => {
+    if (key == "displayName"){
+      setRenderComponent( <Text> Cambiar Nombre ya apellido</Text>)
+    }
+    if (key == "email"){
+      setRenderComponent( <Text> Cambiar email</Text>)
+    }
+    if (key == "password"){
+
+      setRenderComponent( <Text> cambiar Contraseña </Text>)
+
+    }
+    onCloseOpenModal();
+
+  };
+
+  const menuOptions = getMenuOptions(selectedComponent);
+  
 
   return (
     <View>
@@ -26,13 +47,19 @@ export  function AccountOptions() {
             name = {menu.iconNameRight} 
             color = {menu.iconColorRight}/>
         </ListItem>
+        
       ))}
+
+      <Modal show= {showModal} close = { () => onCloseOpenModal()}>
+          {renderComponent}
+      </Modal>
+      
       
     </View>
   )
 }
 
-function getMenuOptions(){
+function getMenuOptions(selectedComponent){
   return[
     {
       title: "Cambiar Nombre y Appellidos",
@@ -40,7 +67,8 @@ function getMenuOptions(){
       iconNameLeft: "account-circle",
       iconColorLeft:"#ccc",
       iconNameRight: "chevron-right",
-      iconColorRight: "#ccc"
+      iconColorRight: "#ccc",
+      onPress: () => selectedComponent ("displayName")
     },
     {
       title: "Cambiar Email",
@@ -48,7 +76,8 @@ function getMenuOptions(){
       iconNameLeft: "at",
       iconColorLeft:"#ccc",
       iconNameRight: "chevron-right",
-      iconColorRight: "#ccc"
+      iconColorRight: "#ccc",
+      onPress: () => selectedComponent ("email")
     },
     {
       title: "Cambiar contraseña",
@@ -56,7 +85,8 @@ function getMenuOptions(){
       iconNameLeft: "lock-reset",
       iconColorLeft:"#ccc",
       iconNameRight: "chevron-right",
-      iconColorRight: "#ccc"
+      iconColorRight: "#ccc",
+      onPress: () => selectedComponent ("password")
     },
 
   ];
